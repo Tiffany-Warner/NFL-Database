@@ -1,0 +1,128 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/player">Players</a></li>
+            <li><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="col-lg-12 text-center"> 
+        <h1>NFL Database</h1>
+        <hr>
+    </div>
+      <!--===================-->
+      <!-- Add Player Form   -->
+      <!--===================-->
+      <div class="content-container" style="margin: 20px 30%;">
+        <div class="col-lg-12 text-left"> 
+            <legend> Add a Player</legend> 
+            <form action="/player" method="POST">
+                <label>First name: <input type="text" name="fname" placeholder="First name" required> </label>
+                <label>Last name: <input type="text" name="lname" placeholder="Last name" required> </label>
+                <p>
+                  <!--Show names of all teams in a dropdown menu-->
+                  <!-- This is pulling data straight from the database -->
+                  <label>Team: <select name="team">
+                    <option value="null">NULL</option>
+                    {{#each teams}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                  </select>
+                  </label>
+                </p>
+                <p>
+                    <label>Date of Birth: 
+                      <select name="month" size="1"> 
+                          <option value="" selected disabled hidden>Month</option>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                      </select>
+                      <input id="dayInput" type="text" name="day" placeholder="Day" required>
+                      <input id="yearInput" type="text" name="year" placeholder="Year" required>
+                    </label>
+                    <p>
+                      <label>Title: <select name="title">
+                        <option value="player">Player</option>
+                        <option value="captain">Captain</option>
+                      </select>
+                      <label>Year Drafted: 
+                          <select id="year_drafted" name="year_drafted" size="1">
+                          </select>
+                      </label>
+                    </p>
+                <button class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Player</button>
+            </form>
+          </div>
+        </div>
+        
+        <!--=========-->
+        <!--  Table  -->
+        <!--=========-->
+        <div class="content-container" style="justify-content: center;"> 
+        <div class="content-container col-lg-9 text-left scrollTable"> 
+  
+          <table class= "table table-bordered">
+            <caption>Player Table</caption>
+            <thead> 
+                <th>First Name</th> 
+                <th>Last Name</th> 
+                <th>Team</th>
+                <th>Birthdate</th> 
+                <th>Year Drafted</th>
+                <th>Title</th>
+            </thead> 
+            <tbody> 
+                {{#each players}} 
+                <tr> 
+                    <td>{{fname}}</td> 
+                    <td>{{lname}}</td> 
+                    <td>{{team}}</td> 
+                    <td>{{dob}}</td>
+                    <td>{{year_drafted}}</td> 
+                    <td>{{title}}</td>
+                    <td><button class="delete" onclick="deletePlayer({{id}})"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button></td>
+                    <form action="/updatePlayer" method="GET">
+                      <input type="hidden" name="id" value = "{{this.id}}">
+                      <td><button type="submit" class="update">Update</a></button></td>
+                    </form>
+                </tr> 
+                {{/each}} 
+              </tbody>
+            </table>
+        </div>
+        </div>
+    <!--==========================================================-->
+    <!--                     Footer                               -->
+    <!--==========================================================-->
+    <footer class="container-fluid text-center">
+      <p>CS340 Project | NFL Database | Designed by Tiffany Warner and Shane Klumpp </p>
+    </footer>
+    <script src="/scripts/playerTable.js"></script>
+    

@@ -1,0 +1,73 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/player">Players</a></li>
+            <li><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--==========================================================-->
+    <!--                     Header                               -->
+    <!--==========================================================-->    
+    <div class="col-lg-12 text-center"> 
+      <h1> Update {{playerForUpdate.fname}} {{playerForUpdate.lname}}</h1> 
+      <hr>
+    </div>
+
+
+    <!--==========================================================-->
+    <!--                     Form                                 -->
+    <!--==========================================================-->
+<div class="content-container" style="margin: 20px 30%;">
+  <div class="col-lg-12 text-left"> 
+  
+    <form action="/updatePlayer" method="POST">
+        <input type="hidden" name="id" value = "{{playerForUpdate.id}}">
+        <label>First name: <input type="text" name="fname" value="{{playerForUpdate.fname}}" required> </label>
+        <label>Last name: <input type="text" name="lname" value="{{playerForUpdate.lname}}" required> </label>
+        <p>
+          <!--Show names of all teams in a dropdown menu-->
+          <!-- This is pulling data straight from the database -->
+          <label>Team: <select name="team">
+            <option value="{{playerForUpdate.team_id}}" selected>Default</option>
+            {{#each teams}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+            <option value="null">NULL</option>
+          </select>
+          </label>
+        </p>
+        <p>
+         <label>Birthdate: <input id="dateInput" type="date" name="dob" value="{{playerForUpdate.dob}}"></label>
+            <p>
+              <label>Title: <select name="title">
+                <option value="{{playerForUpdate.title}}" selected>Default</option>
+                <option value="player">Player</option>
+                <option value="captain">Captain</option>
+              </select>
+              <label>Year Drafted: 
+                  <input id="year_drafted" name="year_drafted" type="number" min="1930" value="{{playerForUpdate.year_drafted}}" placeholder="{{playerForUpdate.year_drafted}}">
+              </label>
+            </p>
+              <button type="submit">Update Player</button>
+        </form>
+      
+  </div>
+</div>

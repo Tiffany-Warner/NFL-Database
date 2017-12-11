@@ -1,0 +1,105 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    padding: 16px;
+    margin: 10px;
+}
+a:link {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.links {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #e86400;
+    font-size: 25px;
+}
+.linkbox{
+    margin: 50px;
+}
+.links:hover{
+    background-color: #ef7a32;
+    color: black;
+}
+
+thead{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #333;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #DDD;
+}
+caption{
+    font-size: 25px;
+    color: black;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+.scrollTable{
+    max-height: 550px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    margin: 5px;
+}
+.add{
+    background-color: green;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75)
+}
+.delete{
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75)
+}
+.update{
+    background-color: royalblue;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+    color: white;
+}
+
+i{
+ padding-right: 5px;   
+}
+#dayInput{
+    width: 50px;
+ }
+
+#yearInput{
+     width: 75px;
+ }
+ #num_stats{
+     width: 70px;
+ }

@@ -1,0 +1,124 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/player">Players</a></li>
+            <li><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--==========================================================-->
+    <!--                     Header                               -->
+    <!--==========================================================-->    
+    <div class="col-lg-12 text-center"> 
+      <h1> Search Results</h1> 
+      <hr>
+    </div>
+
+
+    <!--==========================================================-->
+    <!--                     Table                                -->
+    <!--==========================================================-->
+    <div class="content-container" style="justify-content: center;"> 
+        <div class="content-container col-lg-9 text-left scrollTable"> 
+        {{#if player}}
+          <table class= "table table-bordered">
+            <caption>Player Table 
+            </caption>
+            <thead> 
+                <th>First Name</th> 
+                <th>Last Name</th> 
+            </thead> 
+            <tbody> 
+                {{#each playerForSearch}} 
+                <tr> 
+                    <td>{{fname}}</td> 
+                    <td>{{lname}}</td> 
+                </tr> 
+                {{/each}} 
+              </tbody>
+            </table>
+        {{/if}}
+        {{#if playerTeam}}
+            <table class= "table table-bordered">
+                <caption>Player Table 
+                </caption>
+                <thead> 
+                    <th>First Name</th> 
+                    <th>Last Name</th>
+                    <th>Team</th>
+                </thead> 
+                <tbody> 
+                    {{#each playerTeamForSearch}} 
+                    <tr> 
+                    <td>{{fname}}</td> 
+                    <td>{{lname}}</td>
+                    <td>{{teamName}}</td>
+                    
+                    </tr> 
+                    {{/each}} 
+                </tbody>
+            </table>
+        {{/if}}
+        {{#if playerPos}}
+            <table class= "table table-bordered">
+                <caption>Player Table 
+                </caption>
+                <thead> 
+                    <th>First Name</th> 
+                    <th>Last Name</th>
+                    <th>Position</th>
+                </thead> 
+                <tbody> 
+                    {{#each playerPosForSearch}} 
+                    <tr> 
+                    <td>{{fname}}</td> 
+                    <td>{{lname}}</td>
+                    <td>{{position}}</td>
+                    
+                    </tr> 
+                    {{/each}} 
+                </tbody>
+            </table>
+        {{/if}}
+        {{#if playerTeamPos}}
+            <table class= "table table-bordered">
+                <caption>Player Table  
+                </caption>
+                <thead> 
+                    <th>First Name</th> 
+                    <th>Last Name</th>
+                    <th>Team</th>
+                    <th>Position</th>
+                </thead> 
+                <tbody> 
+                    {{#each playerTeamPosForSearch}} 
+                    <tr> 
+                    <td>{{fname}}</td> 
+                    <td>{{lname}}</td>
+                    <td>{{teamName}}</td>
+                    <td>{{position}}</td>
+                    
+                    </tr> 
+                    {{/each}} 
+                </tbody>
+            </table>
+        {{/if}}
+        </div>
+    </div>

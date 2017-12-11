@@ -1,0 +1,57 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/player">Players</a></li>
+            <li><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--==========================================================-->
+    <!--                     Header                               -->
+    <!--==========================================================-->    
+    <div class="col-lg-12 text-center"> 
+      <h1> Update {{posPlayForUpdate.playFname}} {{posPlayForUpdate.playLname}}'s Position</h1> 
+      <hr>
+    </div>
+
+      <!--==========================================-->
+      <!-- Update Position-Player Relationship Form -->
+      <!--==========================================-->
+      <div id="position_player" class="content-container" style="margin: 20px 30%;">
+        <div class="col-lg-12 text-left"> 
+            <legend> Update {{posPlayForUpdate.playFname}} {{posPlayForUpdate.playLname}}'s Position
+                 <p>Current Position: {{posPlayForUpdate.posName}}</p>
+             </legend> 
+            <form action="/updatePositionPlayer" method="POST">
+              <input type="hidden" name="id" value = "{{posPlayForUpdate.id}}">
+                <p>
+                  <!--Show names of all positions in a dropdown menu-->
+                  <label>Position: <select name="position">
+                  <option value="{{posPlayForUpdate.position_id}}" selected>Default</option>
+                    {{#each positions}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                  </select>
+                  </label>
+                </p>
+                <button type="submit">Update {{posPlayForUpdate.playFname}} {{posPlayForUpdate.playLname}}'s Position</button>
+              </form>
+          </div>
+        </div>

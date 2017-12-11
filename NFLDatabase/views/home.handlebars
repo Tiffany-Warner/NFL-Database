@@ -1,0 +1,221 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/player">Players</a></li>
+            <li><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--==========================================================-->
+    <!--                     Content                              -->
+    <!--==========================================================-->   
+    <div class="container-fluid text-center"> 
+      <h1>NFL Database</h1>
+      <hr>
+      <img src="/imgs/NFL_logo.png">
+    </div>
+    <div class="content-container text-center linkbox" style="justify-content: center;">    
+      <a href="/player"  class="links" >Edit Players</a>
+      <a href="/team"  class="links" >Edit Teams</a>
+      <a href="/team#team_stats"  class="links" >Edit Team Stats</a>
+      <a href="/division"  class="links" >Edit Divisions</a>
+      <a href="/positions"  class="links" >Edit Positions</a>
+      <a href="/positions#position_player"  class="links" >Edit Player's Positions</a>
+    </div>
+    
+    <!--==========================================================-->
+    <!--                     Search Box                           -->
+    <!--==========================================================-->   
+    <div class="container-fluid text-center" style="border: 2px dashed orange"> 
+      <h2>Search Queries</h2>
+        <div class="content-container" style="margin: 20px 30%;">
+          <div class="col-lg-12 text-left"> 
+            <legend> Search for a Player - Provides their team or associated positions
+            </legend>
+            <form action="/searchPlayer" method="GET" style="text-align:center;">
+              <label>Player Name: <select name="id">
+                    {{#each players}}
+                      <option value="{{id}}">{{fname}} {{lname}}</option>
+                    {{/each}}
+                    </select>
+                </label>
+               <p> 
+                   <label style="padding-right: 20px; margin-top: 10px;"> 
+                         Find Team <input type="checkbox" name="findTeam" value="true"> 
+                   </label>
+                   <label> 
+                        Find Positions <input type="checkbox" name="findPos" value="true"> 
+                   </label>
+                </p>
+               <p>
+                 <button class="add" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+                </p>
+            </form>
+          </div>
+        </div>
+    </div>
+    <!--==========================================================-->
+    <!--                     Tables                               -->
+    <!--==========================================================-->   
+    <div class="container-fluid text-center"> 
+      <h2>The Tables</h2>
+    </div>
+    
+    <div class="content-container" style="justify-content:center;">
+      <div class=" content-container scrollTable">   
+        <h3>Player Table</h3>
+        <table class= "table table-bordered">
+          <thead> 
+              <th>First Name</th> 
+              <th>Last Name</th> 
+              <th>Team</th>
+              <th>Birthdate</th> 
+              <th>Year Drafted</th>
+              <th>Title</th>
+          </thead> 
+          <tbody> 
+              {{#each players}} 
+              <tr> 
+                  <td>{{fname}}</td> 
+                  <td>{{lname}}</td> 
+                  <td>{{playerTeam}}</td> 
+                  <td>{{dob}}</td>
+                  <td>{{year_drafted}}</td> 
+                  <td>{{title}}</td>
+              </tr> 
+              {{/each}} 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <div class="content-container" style="justify-content:center;">
+      <div class="content-container scrollTable">   
+        <h3>Team Table</h3>
+        <table class= "table table-bordered">
+          <thead> 
+              <th>Name</th>
+              <th>Year Founded</th>
+              <th>Division</th>
+          </thead> 
+          <tbody> 
+              {{#each team}} 
+              <tr> 
+                  <td>{{name}}</td> 
+                  <td>{{year_founded}}</td>
+                  <td>{{division}}</td>
+              </tr> 
+              {{/each}} 
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="content-container" style="justify-content:center;">
+    <div class="content-container scrollTable" style="margin-right: 10%;">   
+        <h3>Team Stats Table</h3>
+        <table class= "table table-bordered">
+          <thead> 
+              <th>Year</th>
+              <th>Team</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Ties</th>
+          </thead> 
+          <tbody> 
+              {{#each team_stats}} 
+              <tr> 
+                  <td>{{year}}</td> 
+                  <td>{{name}}</td>
+                  <td>{{wins}}</td>
+                  <td>{{losses}}</td>
+                  <td>{{ties}}</td>
+              </tr> 
+              {{/each}} 
+            </tbody>
+          </table>
+        </div>
+      <div class="content-container scrollTable">   
+        <h3>Divisions Table</h3>
+        <table class= "table table-bordered">
+          <thead> 
+              <th>Name</th>
+          </thead> 
+          <tbody> 
+              {{#each divisions}} 
+              <tr> 
+                  <td>{{name}}</td> 
+              </tr> 
+              {{/each}} 
+            </tbody>
+          </table>
+        </div>
+    </div>
+        <!--===================-->
+        <!--  Positions Table  -->
+        <!--===================-->
+        <div class="content-container" style="justify-content: center;"> 
+        <div class="content-container col-lg-6 text-left scrollTable"> 
+  
+          <table class= "table table-bordered">
+            <caption>Positions Table</caption>
+            <thead> 
+                <th>Name</th> 
+                <th>Type</th> 
+            </thead> 
+            <tbody> 
+                {{#each positions}} 
+                <tr> 
+                    <td>{{name}}</td> 
+                    <td>{{type}}</td> 
+                </tr> 
+                {{/each}} 
+              </tbody>
+            </table>
+        </div>
+        <!--===========================-->
+        <!--  Positions Players Table  -->
+        <!--===========================-->
+        <div class="content-container col-lg-6 text-left scrollTable"> 
+  
+          <table class= "table table-bordered">
+            <caption>Position-Player Table</caption>
+            <thead> 
+                <th>Player</th> 
+                <th>Position</th> 
+            </thead> 
+            <tbody> 
+                {{#each player_position}} 
+                <tr> 
+                    <td>{{playFname}} {{playLname}}</td> 
+                    <td>{{posName}}</td> 
+                </tr> 
+                {{/each}} 
+              </tbody>
+            </table>
+        </div>
+        </div>
+    <!--==========================================================-->
+    <!--                     Footer                               -->
+    <!--==========================================================-->
+    <footer class="container-fluid text-center">
+      <p>CS340 Project | NFL Database | Designed by Tiffany Warner and Shane Klumpp </p>
+    </footer>
+
+
+

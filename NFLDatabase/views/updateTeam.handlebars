@@ -1,0 +1,58 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/player">Players</a></li>
+            <li><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--==========================================================-->
+    <!--                     Header                               -->
+    <!--==========================================================-->    
+    <div class="col-lg-12 text-center"> 
+      <h1> Update {{teamForUpdate.name}}</h1> 
+      <hr>
+    </div>
+
+      <!--==================-->
+      <!-- Update Team Form -->
+      <!--==================-->
+      <div class="content-container" style="margin: 20px 30%;">
+        <div class="col-lg-12 text-left"> 
+            <legend> Update Team</legend> 
+            <form  action="/updateTeam" method="POST">
+                <input type="hidden" name="id" value = "{{teamForUpdate.id}}">
+                <label>Team Name: <input type="text" name="name" value="{{teamForUpdate.name}}" required> </label>
+                <label> Year Founded: <input type="number" name="year" min="1900" value="{{teamForUpdate.year_founded}}" required></label>
+                <p>
+                  <!--Show names of all divisions in a dropdown menu-->
+                  <label>Division: <select name="division">
+                    <option value="{{teamForUpdate.division_id}}" selected>Default</option>
+                    {{#each division}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                    <option value="null">NULL</option>
+                  </select>
+                  </label>
+                </p>
+                <button type="submit">Update Team</button>
+              </form>
+          </div>
+        </div>

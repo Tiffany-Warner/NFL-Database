@@ -1,0 +1,146 @@
+    <!--==========================================================-->
+    <!--                     Navbar                               -->
+    <!--==========================================================-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <!--Creates hamburger when going into mobile view-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/player">Players</a></li>
+            <li class="active"><a href="/team">Teams</a></li>
+            <li><a href="/division">Divisions</a></li>
+            <li><a href="/positions">Positions</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container col-lg-12 text-center"> 
+        <h1>NFL Database</h1>
+        <hr>
+    </div>
+    
+      <!--==================-->
+      <!--  Add Team Form   -->
+      <!--==================-->
+      <div class="content-container" style="margin: 20px 30%;">
+        <div class="col-lg-12 text-left"> 
+            <legend> Add a Team</legend> 
+            <form action="/team" method="POST">
+                <label>Team Name: <input type="text" name="name" placeholder="Team name" required> </label>
+                <label> Year Founded: <input type="text" name="year" required></label>
+                <p>
+                  <!--Show names of all divisions in a dropdown menu-->
+                  <label>Division: <select name="division">
+                   <option value="null">NULL</option>
+                    {{#each division}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                  </select>
+                  </label>
+                </p>
+                <button class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Team</button>
+              </form>
+          </div>
+        </div>
+        
+        <!--=============-->
+        <!-- Team Table  -->
+        <!--=============-->
+        <div class="content-container" style="justify-content: center;"> 
+          <div class="content-container col-lg-6 text-left scrollTable"> 
+              <table class= "table table-bordered">
+                <caption>Team Table</caption>
+                <thead> 
+                    <th>Name</th>
+                    <th>Year Founded</th>
+                    <th>Division</th>
+                </thead> 
+                <tbody> 
+                    {{#each team}} 
+                    <tr> 
+                        <td>{{name}}</td> 
+                        <td>{{year_founded}}</td>
+                        <td>{{division}}</td>
+                        <td><button class="delete" onclick="deleteTeam({{id}})"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button></td>
+                        <form action="/updateTeam" method="GET">
+                          <input type="hidden" name="id" value = "{{this.id}}">
+                          <td><button type="submit" class="update">Update</a></button></td>
+                        </form>
+                    </tr> 
+                    {{/each}} 
+                  </tbody>
+                </table>
+              </div>
+          </div>
+            
+      <!--========================-->
+      <!--  Add Team Stats Form   -->
+      <!--========================-->
+      <div id="team_stats" class="content-container" style="margin: 20px 30%;">
+        <div class="col-lg-12 text-left"> 
+            <legend> Add Team Stats</legend> 
+            <form action="/team_stats" method="POST">
+              <p>
+                <label>Year: <input id="num_stats" type="number" name="year" value="1990" required></label> <!-- Starts at a default year of 1990 -->
+                <label>Team: <select name="team">
+                {{#each team}}
+                  <option value="{{id}}">{{name}}</option>
+                {{/each}}
+                </select>
+              </p>
+                <p>
+                    <label> Wins: <input id="num_stats" type="number" name="wins" min="0"></label>
+                    <label> Losses: <input id="num_stats" type="number" name="losses" min="0"></label>
+                    <label> Ties: <input id="num_stats" type="number" name="ties" min="0"></label>
+                </p>
+                <p>
+                  <button class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Team Stats</button>
+                </p>            
+              </form>
+          </div>
+        </div>    
+            
+            
+        <!--===================-->
+        <!-- Team Stats Table  -->
+        <!--===================-->
+        <div class="content-container" style="justify-content: center;"> 
+          <div class="container container-fluid col-lg-6 scrollTable">   
+              <h3>Team Stats</h3>
+              <table class= "table table-bordered">
+                <thead> 
+                    <th>Year</th>
+                    <th>Team Name </th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </thead> 
+                <tbody> 
+                    {{#each team_stats}} 
+                    <tr> 
+                        <td>{{year}}</td> 
+                        <td>{{team}}</td>
+                        <td>{{wins}}</td>
+                        <td>{{losses}}</td>
+                        <td>{{ties}}</td>
+                        <td><button class="delete" onclick="deleteTeamStats({{team_id}}, {{year}})"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button></td>
+                      
+                        <form action="/updateTeamStats" method="GET">
+                          <input type="hidden" name="team" value = "{{this.team_id}}">
+                          <input type="hidden" name="year" value = "{{this.year}}">
+                          <td><button type="submit" class="update">Update</a></button></td>
+                        </form>
+                    </tr> 
+                    {{/each}} 
+                  </tbody>
+                </table>
+              </div>
+          </div>
