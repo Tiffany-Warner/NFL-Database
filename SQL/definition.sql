@@ -462,8 +462,3 @@ INSERT INTO nfl_team_stats(`year`, `team_id`, `wins`, `losses`, `ties`) VALUES
      ((SELECT id FROM nfl_positions WHERE name="Punter"), (SELECT id FROM nfl_player WHERE fname="Matt" AND lname="Haack" )),
      ((SELECT id FROM nfl_positions WHERE name="Punter"), (SELECT id FROM nfl_player WHERE fname="Thomas" AND lname="Morstead" )),
      ((SELECT id FROM nfl_positions WHERE name="Punter"), (SELECT id FROM nfl_player WHERE fname="Bradley" AND lname="Pinion" ));
-
---     ((SELECT id FROM nfl_position WHERE name=""), (SELECT id FROM nfl_player WHERE name="")),
---     ((SELECT id FROM nfl_position WHERE name=""), (SELECT id FROM nfl_player WHERE name="")),
---     ((SELECT id FROM nfl_position WHERE name=""), (SELECT id FROM nfl_player WHERE name="")),
---     ((SELECT id FROM nfl_position WHERE name=""), (SELECT id FROM nfl_player WHERE name=""));
